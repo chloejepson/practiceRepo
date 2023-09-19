@@ -6,7 +6,7 @@ const express = require("express");
 const recordRoutes = express.Router();
  
 // This will help us connect to the database
-const dbo = require("../db/conn");
+const dbo = require("../db/conn.js");
  
 // This helps convert the id from string to ObjectId for the _id.
 const ObjectId = require("mongodb").ObjectId;
@@ -14,13 +14,17 @@ const ObjectId = require("mongodb").ObjectId;
  
 // This section will help you get a list of all the records.
 recordRoutes.route("/user").get(function (req, res) {
- let db_connect = dbo.getDb("PracticeDB");
+ let db_connect = dbo.getDatabase("PracticeDB");
+ if(db_connect){
+  console.log("connected to db");
+ }
  db_connect
    .collection("Users")
    .find({})
    .toArray(function (err, result) {
      if (err) throw err;
      res.json(result);
+     console.log(result)
    });
 });
  

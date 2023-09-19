@@ -14,11 +14,11 @@ app.use(express.json());
 app.use(require("./routes/record"));
 
 // Get MongoDB driver connection
-const dbo = require("./db/conn");
+const dbo = require("./db/conn.js");
  
 app.listen(port, () => {
   // Perform a database connection when server starts
-  dbo.connectToServer(function (err) {
+  dbo.connectToDatabase(function (err) {
     if (err) console.error(err);
  
   });
