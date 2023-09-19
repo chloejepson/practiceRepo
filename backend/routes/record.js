@@ -16,17 +16,20 @@ const ObjectId = require("mongodb").ObjectId;
 recordRoutes.route("/user").get(function (req, res) {
  let db_connect = dbo.getDatabase("PracticeDB");
  if(db_connect){
-  console.log("connected to db");
+  console.log("getDatabase working");
  }
+ console.log(db_connect.collection("Users"))
  db_connect
    .collection("Users")
-   .find({})
-   .toArray(function (err, result) {
+   .findOne({}, function (err, result) {
      if (err) throw err;
      res.json(result);
      console.log(result)
    });
+    
 });
+
+
  
 // This section will help you get a single record by id
 recordRoutes.route("/user/:id").get(function (req, res) {
