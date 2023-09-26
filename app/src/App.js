@@ -3,16 +3,7 @@ import React, { useState } from 'react';
 import './App.css';
 import * as cognito from '../libs/cognito'
 
-//set an auth status
-async function signInWithUsername(username, password){
-  try {
-    await cognito.signInWithEmail(username, password)
-    setAuthStatus(AuthStatus.SignedIn)
-  } catch (err) {
-    setAuthStatus(AuthStatus.SignedOut)
-    throw err
-  }
-}
+//set an auth stat
 
 function MyForm() {
   const [firstName, setFirstName] = useState('');
